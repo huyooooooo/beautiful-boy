@@ -1,6 +1,7 @@
 %% Matlab神经网络43个案例分析
 
 % 基于SVM的信息粒化时序回归预测——上证指数开盘指数变化趋势和变化空间预测
+% by 李洋(faruto)
 % http://www.matlabsky.com
 % Email:faruto@163.com
 % http://weibo.com/faruto 
@@ -37,7 +38,7 @@ snapnow;
 
 %% 对原始数据进行模糊信息粒化
 
-win_num = floor(time/5);%向右取整  时间
+win_num = floor(time/5);
 tsx = 1:win_num;
 tsx = tsx';
 [Low,R,Up]=FIG_D(ts','triangle',win_num);
@@ -97,14 +98,14 @@ disp(str);
 
 % 训练SVM
 cmd = ['-c ', num2str(bestc), ' -g ', num2str(bestg) , ' -s 3 -p 0.1'];
-low_model =fitcsvm(low, tsx, cmd);
+low_model = svmtrain(low, tsx, cmd);
 
 % 预测
 [low_predict,low_mse] = svmpredict(low,tsx,low_model);
 low_predict = mapminmax('reverse',low_predict,low_ps);
 predict_low = svmpredict(1,win_num+1,low_model);
 predict_low = mapminmax('reverse',predict_low,low_ps);
-predict_low;
+predict_low
 
 %% 对于Low的回归预测结果分析
 figure;
@@ -172,7 +173,7 @@ r_model = svmtrain(r, tsx, cmd);
 r_predict = mapminmax('reverse',r_predict,r_ps);
 predict_r = svmpredict(1,win_num+1,r_model);
 predict_r = mapminmax('reverse',predict_r,r_ps);
-predict_r;
+predict_r
 
 %% 对于R的回归预测结果分析
 figure;
@@ -226,7 +227,7 @@ disp(str);
 
 % 训练SVM
 cmd = ['-c ', num2str(bestc), ' -g ', num2str(bestg) , ' -s 3 -p 0.1'];
-up_model = fitcsvm(up, tsx, cmd);
+up_model = svmtrain(up, tsx, cmd);
 
 % 预测
 [up_predict,up_mse] = svmpredict(up,tsx,up_model);
@@ -329,7 +330,7 @@ basenum = 2;
 for i = 1:m
     for j = 1:n
         cmd = ['-v ',num2str(v),' -c ',num2str( basenum^X(i,j) ),' -g ',num2str( basenum^Y(i,j) ),' -s 3'];
-        cg(i,j) = fitcsvm(train_label, train, cmd);
+        cg(i,j) = svmtrain(train_label, train, cmd);
         
         if cg(i,j) < mse
             mse = cg(i,j);
