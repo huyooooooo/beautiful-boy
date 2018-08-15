@@ -1,49 +1,44 @@
-%% MatlabÉñ¾­ÍøÂç43¸ö°¸Àı·ÖÎö
+%% Matlabç¥ç»ç½‘ç»œ43ä¸ªæ¡ˆä¾‹åˆ†æ
 
-% »ùÓÚSVMµÄĞÅÏ¢Á£»¯Ê±Ğò»Ø¹éÔ¤²â¡ª¡ªÉÏÖ¤Ö¸Êı¿ªÅÌÖ¸Êı±ä»¯Ç÷ÊÆºÍ±ä»¯¿Õ¼äÔ¤²â
-% by ÀîÑó(faruto)
-% http://www.matlabsky.com
-% Email:faruto@163.com
-% http://weibo.com/faruto 
-% http://blog.sina.com.cn/faruto
-% 2013.01.01
-%% Çå¿Õ»·¾³±äÁ¿
+% åŸºäºSVMçš„ä¿¡æ¯ç²’åŒ–æ—¶åºå›å½’é¢„æµ‹â€”â€”ä¸Šè¯æŒ‡æ•°å¼€ç›˜æŒ‡æ•°å˜åŒ–è¶‹åŠ¿å’Œå˜åŒ–ç©ºé—´é¢„æµ‹
+
+%% æ¸…ç©ºç¯å¢ƒå˜é‡
 function chapter_FIGsh
 tic;
 close all;
 clear;
 clc;
 format compact;
-%% Ô­Ê¼Êı¾İµÄÌáÈ¡
+%% åŸå§‹æ•°æ®çš„æå–
 
-% ÔØÈë²âÊÔÊı¾İÉÏÖ¤Ö¸Êı(1990.12.19-2009.08.19)
-% Êı¾İÊÇÒ»¸ö4579*6µÄdoubleĞÍµÄ¾ØÕó,Ã¿Ò»ĞĞ±íÊ¾Ã¿Ò»ÌìµÄÉÏÖ¤Ö¸Êı
-% 6ÁĞ·Ö±ğ±íÊ¾µ±ÌìÉÏÖ¤Ö¸ÊıµÄ¿ªÅÌÖ¸Êı,Ö¸Êı×î¸ßÖµ,Ö¸Êı×îµÍÖµ,ÊÕÅÌÖ¸Êı,µ±ÈÕ½»Ò×Á¿,µ±ÈÕ½»Ò×¶î.
+% è½½å…¥æµ‹è¯•æ•°æ®ä¸Šè¯æŒ‡æ•°(1990.12.19-2009.08.19)
+% æ•°æ®æ˜¯ä¸€ä¸ª4579*6çš„doubleå‹çš„çŸ©é˜µ,æ¯ä¸€è¡Œè¡¨ç¤ºæ¯ä¸€å¤©çš„ä¸Šè¯æŒ‡æ•°
+% 6åˆ—åˆ†åˆ«è¡¨ç¤ºå½“å¤©ä¸Šè¯æŒ‡æ•°çš„å¼€ç›˜æŒ‡æ•°,æŒ‡æ•°æœ€é«˜å€¼,æŒ‡æ•°æœ€ä½å€¼,æ”¶ç›˜æŒ‡æ•°,å½“æ—¥äº¤æ˜“é‡,å½“æ—¥äº¤æ˜“é¢.
 load chapter_sh.mat;
 
-% ÌáÈ¡Êı¾İ
+% æå–æ•°æ®
 ts = sh_open;
 time = length(ts);
 
-% »­³öÔ­Ê¼ÉÏÖ¤Ö¸ÊıµÄÃ¿ÈÕ¿ªÅÌÊı
+% ç”»å‡ºåŸå§‹ä¸Šè¯æŒ‡æ•°çš„æ¯æ—¥å¼€ç›˜æ•°
 figure;
 plot(ts,'LineWidth',2);
-title('ÉÏÖ¤Ö¸ÊıµÄÃ¿ÈÕ¿ªÅÌÊı(1990.12.20-2009.08.19)','FontSize',12);
-xlabel('½»Ò×ÈÕÌìÊı(1990.12.19-2009.08.19)','FontSize',12);
-ylabel('¿ªÅÌÊı','FontSize',12);
+title('ä¸Šè¯æŒ‡æ•°çš„æ¯æ—¥å¼€ç›˜æ•°(1990.12.20-2009.08.19)','FontSize',12);
+xlabel('äº¤æ˜“æ—¥å¤©æ•°(1990.12.19-2009.08.19)','FontSize',12);
+ylabel('å¼€ç›˜æ•°','FontSize',12);
 grid on;
 % print -dtiff -r600 original;
 
 snapnow;
 
-%% ¶ÔÔ­Ê¼Êı¾İ½øĞĞÄ£ºıĞÅÏ¢Á£»¯
+%% å¯¹åŸå§‹æ•°æ®è¿›è¡Œæ¨¡ç³Šä¿¡æ¯ç²’åŒ–
 
 win_num = floor(time/5);
 tsx = 1:win_num;
 tsx = tsx';
 [Low,R,Up]=FIG_D(ts','triangle',win_num);
 
-% Ä£ºıĞÅÏ¢Á£»¯¿ÉÊÓ»¯Í¼
+% æ¨¡ç³Šä¿¡æ¯ç²’åŒ–å¯è§†åŒ–å›¾
 figure;
 hold on;
 plot(Low,'b+');
@@ -51,131 +46,131 @@ plot(R,'r*');
 plot(Up,'gx');
 hold off;
 legend('Low','R','Up',2);
-title('Ä£ºıĞÅÏ¢Á£»¯¿ÉÊÓ»¯Í¼','FontSize',12);
-xlabel('Á£»¯´°¿ÚÊıÄ¿','FontSize',12);
-ylabel('Á£»¯Öµ','FontSize',12);
+title('æ¨¡ç³Šä¿¡æ¯ç²’åŒ–å¯è§†åŒ–å›¾','FontSize',12);
+xlabel('ç²’åŒ–çª—å£æ•°ç›®','FontSize',12);
+ylabel('ç²’åŒ–å€¼','FontSize',12);
 grid on;
 % print -dtiff -r600 FIGpic;
 
 snapnow;
-%% ÀûÓÃSVM¶ÔLow½øĞĞ»Ø¹éÔ¤²â
+%% åˆ©ç”¨SVMå¯¹Lowè¿›è¡Œå›å½’é¢„æµ‹
 
-% Êı¾İÔ¤´¦Àí,½«Low½øĞĞ¹éÒ»»¯´¦Àí
-% mapminmaxÎªmatlab×Ô´øµÄÓ³Éäº¯Êı
+% æ•°æ®é¢„å¤„ç†,å°†Lowè¿›è¡Œå½’ä¸€åŒ–å¤„ç†
+% mapminmaxä¸ºmatlabè‡ªå¸¦çš„æ˜ å°„å‡½æ•°
 [low,low_ps] = mapminmax(Low);
 low_ps.ymin = 100;
 low_ps.ymax = 500;
-% ¶ÔLow½øĞĞ¹éÒ»»¯
+% å¯¹Lowè¿›è¡Œå½’ä¸€åŒ–
 [low,low_ps] = mapminmax(Low,low_ps);
-% »­³öLow¹éÒ»»¯ºóµÄÍ¼Ïñ
+% ç”»å‡ºLowå½’ä¸€åŒ–åçš„å›¾åƒ
 figure;
 plot(low,'b+');
-title('Low¹éÒ»»¯ºóµÄÍ¼Ïñ','FontSize',12);
-xlabel('Á£»¯´°¿ÚÊıÄ¿','FontSize',12);
-ylabel('¹éÒ»»¯ºóµÄÁ£»¯Öµ','FontSize',12);
+title('Lowå½’ä¸€åŒ–åçš„å›¾åƒ','FontSize',12);
+xlabel('ç²’åŒ–çª—å£æ•°ç›®','FontSize',12);
+ylabel('å½’ä¸€åŒ–åçš„ç²’åŒ–å€¼','FontSize',12);
 grid on;
 % print -dtiff -r600 lowscale;
-% ¶Ôlow½øĞĞ×ªÖÃ,ÒÔ·ûºÏlibsvm¹¤¾ßÏäµÄÊı¾İ¸ñÊ½ÒªÇó
+% å¯¹lowè¿›è¡Œè½¬ç½®,ä»¥ç¬¦åˆlibsvmå·¥å…·ç®±çš„æ•°æ®æ ¼å¼è¦æ±‚
 low = low';
 snapnow;
 
-% Ñ¡Ôñ»Ø¹éÔ¤²â·ÖÎöÖĞ×î¼ÑµÄSVM²ÎÊıc&g
-% Ê×ÏÈ½øĞĞ´ÖÂÔÑ¡Ôñ
+% é€‰æ‹©å›å½’é¢„æµ‹åˆ†æä¸­æœ€ä½³çš„SVMå‚æ•°c&g
+% é¦–å…ˆè¿›è¡Œç²—ç•¥é€‰æ‹©
 [bestmse,bestc,bestg] = SVMcgForRegress(low,tsx,-10,10,-10,10,3,1,1,0.1,1);
 
-% ´òÓ¡´ÖÂÔÑ¡Ôñ½á¹û
-disp('´òÓ¡´ÖÂÔÑ¡Ôñ½á¹û');
+% æ‰“å°ç²—ç•¥é€‰æ‹©ç»“æœ
+disp('æ‰“å°ç²—ç•¥é€‰æ‹©ç»“æœ');
 str = sprintf( 'SVM parameters for Low:Best Cross Validation MSE = %g Best c = %g Best g = %g',bestmse,bestc,bestg);
 disp(str);
 
-% ¸ù¾İ´ÖÂÔÑ¡ÔñµÄ½á¹ûÍ¼ÔÙ½øĞĞ¾«Ï¸Ñ¡Ôñ
+% æ ¹æ®ç²—ç•¥é€‰æ‹©çš„ç»“æœå›¾å†è¿›è¡Œç²¾ç»†é€‰æ‹©
 [bestmse,bestc,bestg] = SVMcgForRegress(low,tsx,-4,8,-10,10,3,0.5,0.5,0.05,1);
 
-% ´òÓ¡¾«Ï¸Ñ¡Ôñ½á¹û
-disp('´òÓ¡¾«Ï¸Ñ¡Ôñ½á¹û');
+% æ‰“å°ç²¾ç»†é€‰æ‹©ç»“æœ
+disp('æ‰“å°ç²¾ç»†é€‰æ‹©ç»“æœ');
 str = sprintf( 'SVM parameters for Low:Best Cross Validation MSE = %g Best c = %g Best g = %g',bestmse,bestc,bestg);
 disp(str);
 
-% ÑµÁ·SVM
+% è®­ç»ƒSVM
 cmd = ['-c ', num2str(bestc), ' -g ', num2str(bestg) , ' -s 3 -p 0.1'];
 low_model = svmtrain(low, tsx, cmd);
 
-% Ô¤²â
+% é¢„æµ‹
 [low_predict,low_mse] = svmpredict(low,tsx,low_model);
 low_predict = mapminmax('reverse',low_predict,low_ps);
 predict_low = svmpredict(1,win_num+1,low_model);
 predict_low = mapminmax('reverse',predict_low,low_ps);
 predict_low
 
-%% ¶ÔÓÚLowµÄ»Ø¹éÔ¤²â½á¹û·ÖÎö
+%% å¯¹äºLowçš„å›å½’é¢„æµ‹ç»“æœåˆ†æ
 figure;
 hold on;
 plot(Low,'b+');
 plot(low_predict,'r*');
 legend('original low','predict low',2);
 title('original vs predict','FontSize',12);
-xlabel('Á£»¯´°¿ÚÊıÄ¿','FontSize',12);
-ylabel('Á£»¯Öµ','FontSize',12);
+xlabel('ç²’åŒ–çª—å£æ•°ç›®','FontSize',12);
+ylabel('ç²’åŒ–å€¼','FontSize',12);
 grid on;
 % print -dtiff -r600 lowresult;
 
 figure;
 error = low_predict - Low';
 plot(error,'ro');
-title('Îó²î(predicted data-original data)','FontSize',12);
-xlabel('Á£»¯´°¿ÚÊıÄ¿','FontSize',12);
-ylabel('Îó²îÁ¿','FontSize',12);
+title('è¯¯å·®(predicted data-original data)','FontSize',12);
+xlabel('ç²’åŒ–çª—å£æ•°ç›®','FontSize',12);
+ylabel('è¯¯å·®é‡','FontSize',12);
 grid on;
 % print -dtiff -r600 lowresulterror;
 % snapnow;
 
-%% ÀûÓÃSVM¶ÔR½øĞĞ»Ø¹éÔ¤²â
+%% åˆ©ç”¨SVMå¯¹Rè¿›è¡Œå›å½’é¢„æµ‹
 
-% Êı¾İÔ¤´¦Àí,½«R½øĞĞ¹éÒ»»¯´¦Àí
-% mapminmaxÎªmatlab×Ô´øµÄÓ³Éäº¯Êı
+% æ•°æ®é¢„å¤„ç†,å°†Rè¿›è¡Œå½’ä¸€åŒ–å¤„ç†
+% mapminmaxä¸ºmatlabè‡ªå¸¦çš„æ˜ å°„å‡½æ•°
 [r,r_ps] = mapminmax(R);
 r_ps.ymin = 100;
 r_ps.ymax = 500;
-% ¶ÔR½øĞĞ¹éÒ»»¯
+% å¯¹Rè¿›è¡Œå½’ä¸€åŒ–
 [r,r_ps] = mapminmax(R,r_ps);
-% »­³öR¹éÒ»»¯ºóµÄÍ¼Ïñ
+% ç”»å‡ºRå½’ä¸€åŒ–åçš„å›¾åƒ
 figure;
 plot(r,'r*');
-title('r¹éÒ»»¯ºóµÄÍ¼Ïñ','FontSize',12);
+title('rå½’ä¸€åŒ–åçš„å›¾åƒ','FontSize',12);
 grid on;
-% ¶ÔR½øĞĞ×ªÖÃ,ÒÔ·ûºÏlibsvm¹¤¾ßÏäµÄÊı¾İ¸ñÊ½ÒªÇó
+% å¯¹Rè¿›è¡Œè½¬ç½®,ä»¥ç¬¦åˆlibsvmå·¥å…·ç®±çš„æ•°æ®æ ¼å¼è¦æ±‚
 r = r';
 % snapnow;
 
-% Ñ¡Ôñ»Ø¹éÔ¤²â·ÖÎöÖĞ×î¼ÑµÄSVM²ÎÊıc&g
-% Ê×ÏÈ½øĞĞ´ÖÂÔÑ¡Ôñ
+% é€‰æ‹©å›å½’é¢„æµ‹åˆ†æä¸­æœ€ä½³çš„SVMå‚æ•°c&g
+% é¦–å…ˆè¿›è¡Œç²—ç•¥é€‰æ‹©
 [bestmse,bestc,bestg] = SVMcgForRegress(r,tsx,-10,10,-10,10,3,1,1,0.1);
 
-% ´òÓ¡´ÖÂÔÑ¡Ôñ½á¹û
-disp('´òÓ¡´ÖÂÔÑ¡Ôñ½á¹û');
+% æ‰“å°ç²—ç•¥é€‰æ‹©ç»“æœ
+disp('æ‰“å°ç²—ç•¥é€‰æ‹©ç»“æœ');
 str = sprintf( 'SVM parameters for R:Best Cross Validation MSE = %g Best c = %g Best g = %g',bestmse,bestc,bestg);
 disp(str);
 
-% ¸ù¾İ´ÖÂÔÑ¡ÔñµÄ½á¹ûÍ¼ÔÙ½øĞĞ¾«Ï¸Ñ¡Ôñ
+% æ ¹æ®ç²—ç•¥é€‰æ‹©çš„ç»“æœå›¾å†è¿›è¡Œç²¾ç»†é€‰æ‹©
 [bestmse,bestc,bestg] = SVMcgForRegress(r,tsx,-4,8,-10,10,3,0.5,0.5,0.05);
 
-% ´òÓ¡¾«Ï¸Ñ¡Ôñ½á¹û
-disp('´òÓ¡¾«Ï¸Ñ¡Ôñ½á¹û');
+% æ‰“å°ç²¾ç»†é€‰æ‹©ç»“æœ
+disp('æ‰“å°ç²¾ç»†é€‰æ‹©ç»“æœ');
 str = sprintf( 'SVM parameters for R:Best Cross Validation MSE = %g Best c = %g Best g = %g',bestmse,bestc,bestg);
 disp(str);
 
-% ÑµÁ·SVM
+% è®­ç»ƒSVM
 cmd = ['-c ', num2str(bestc), ' -g ', num2str(bestg) , ' -s 3 -p 0.1'];
 r_model = svmtrain(r, tsx, cmd);
 
-% Ô¤²â
+% é¢„æµ‹
 [r_predict,r_mse] = svmpredict(r,tsx,low_model);
 r_predict = mapminmax('reverse',r_predict,r_ps);
 predict_r = svmpredict(1,win_num+1,r_model);
 predict_r = mapminmax('reverse',predict_r,r_ps);
 predict_r
 
-%% ¶ÔÓÚRµÄ»Ø¹éÔ¤²â½á¹û·ÖÎö
+%% å¯¹äºRçš„å›å½’é¢„æµ‹ç»“æœåˆ†æ
 figure;
 hold on;
 plot(R,'b+');
@@ -186,57 +181,57 @@ grid on;
 figure;
 error = r_predict - R';
 plot(error,'ro');
-title('Îó²î(predicted data-original data)','FontSize',12);
+title('è¯¯å·®(predicted data-original data)','FontSize',12);
 grid on;
 % snapnow;
 
-%% ÀûÓÃSVM¶ÔUp½øĞĞ»Ø¹éÔ¤²â
+%% åˆ©ç”¨SVMå¯¹Upè¿›è¡Œå›å½’é¢„æµ‹
 
-% Êı¾İÔ¤´¦Àí,½«up½øĞĞ¹éÒ»»¯´¦Àí
-% mapminmaxÎªmatlab×Ô´øµÄÓ³Éäº¯Êı
+% æ•°æ®é¢„å¤„ç†,å°†upè¿›è¡Œå½’ä¸€åŒ–å¤„ç†
+% mapminmaxä¸ºmatlabè‡ªå¸¦çš„æ˜ å°„å‡½æ•°
 [up,up_ps] = mapminmax(Up);
 up_ps.ymin = 100;
 up_ps.ymax = 500;
-% ¶ÔUp½øĞĞ¹éÒ»»¯
+% å¯¹Upè¿›è¡Œå½’ä¸€åŒ–
 [up,up_ps] = mapminmax(Up,up_ps);
-% »­³öUp¹éÒ»»¯ºóµÄÍ¼Ïñ
+% ç”»å‡ºUpå½’ä¸€åŒ–åçš„å›¾åƒ
 figure;
 plot(up,'gx');
-title('Up¹éÒ»»¯ºóµÄÍ¼Ïñ','FontSize',12);
+title('Upå½’ä¸€åŒ–åçš„å›¾åƒ','FontSize',12);
 grid on;
-% ¶Ôup½øĞĞ×ªÖÃ,ÒÔ·ûºÏlibsvm¹¤¾ßÏäµÄÊı¾İ¸ñÊ½ÒªÇó
+% å¯¹upè¿›è¡Œè½¬ç½®,ä»¥ç¬¦åˆlibsvmå·¥å…·ç®±çš„æ•°æ®æ ¼å¼è¦æ±‚
 up = up';
 snapnow;
 
-% Ñ¡Ôñ»Ø¹éÔ¤²â·ÖÎöÖĞ×î¼ÑµÄSVM²ÎÊıc&g
-% Ê×ÏÈ½øĞĞ´ÖÂÔÑ¡Ôñ
+% é€‰æ‹©å›å½’é¢„æµ‹åˆ†æä¸­æœ€ä½³çš„SVMå‚æ•°c&g
+% é¦–å…ˆè¿›è¡Œç²—ç•¥é€‰æ‹©
 [bestmse,bestc,bestg] = SVMcgForRegress(up,tsx,-10,10,-10,10,3,1,1,0.5);
 
-% ´òÓ¡´ÖÂÔÑ¡Ôñ½á¹û
-disp('´òÓ¡´ÖÂÔÑ¡Ôñ½á¹û');
+% æ‰“å°ç²—ç•¥é€‰æ‹©ç»“æœ
+disp('æ‰“å°ç²—ç•¥é€‰æ‹©ç»“æœ');
 str = sprintf( 'SVM parameters for Up:Best Cross Validation MSE = %g Best c = %g Best g = %g',bestmse,bestc,bestg);
 disp(str);
 
-% ¸ù¾İ´ÖÂÔÑ¡ÔñµÄ½á¹ûÍ¼ÔÙ½øĞĞ¾«Ï¸Ñ¡Ôñ
+% æ ¹æ®ç²—ç•¥é€‰æ‹©çš„ç»“æœå›¾å†è¿›è¡Œç²¾ç»†é€‰æ‹©
 [bestmse,bestc,bestg] = SVMcgForRegress(up,tsx,-4,8,-10,10,3,0.5,0.5,0.2);
 
-% ´òÓ¡¾«Ï¸Ñ¡Ôñ½á¹û
-disp('´òÓ¡¾«Ï¸Ñ¡Ôñ½á¹û');
+% æ‰“å°ç²¾ç»†é€‰æ‹©ç»“æœ
+disp('æ‰“å°ç²¾ç»†é€‰æ‹©ç»“æœ');
 str = sprintf( 'SVM parameters for Up:Best Cross Validation MSE = %g Best c = %g Best g = %g',bestmse,bestc,bestg);
 disp(str);
 
-% ÑµÁ·SVM
+% è®­ç»ƒSVM
 cmd = ['-c ', num2str(bestc), ' -g ', num2str(bestg) , ' -s 3 -p 0.1'];
 up_model = svmtrain(up, tsx, cmd);
 
-% Ô¤²â
+% é¢„æµ‹
 [up_predict,up_mse] = svmpredict(up,tsx,up_model);
 up_predict = mapminmax('reverse',up_predict,up_ps);
 predict_up = svmpredict(1,win_num+1,up_model);
 predict_up = mapminmax('reverse',predict_up,up_ps);
 predict_up
 
-%% ¶ÔÓÚUpµÄ»Ø¹éÔ¤²â½á¹û·ÖÎö
+%% å¯¹äºUpçš„å›å½’é¢„æµ‹ç»“æœåˆ†æ
 figure;
 hold on;
 plot(Up,'b+');
@@ -247,29 +242,29 @@ grid on;
 figure;
 error = up_predict - Up';
 plot(error,'ro');
-title('Îó²î(predicted data-original data)','FontSize',12);
+title('è¯¯å·®(predicted data-original data)','FontSize',12);
 grid on;
 toc;
 % snapnow;
 
-%% ×Óº¯Êı SVMcgForRegress.m
+%% å­å‡½æ•° SVMcgForRegress.m
 function [mse,bestc,bestg] = SVMcgForRegress(train_label,train,cmin,cmax,gmin,gmax,v,cstep,gstep,msestep,flag)
 % SVMcgForClass
-% ÊäÈë:
-% train_label:ÑµÁ·¼¯±êÇ©.ÒªÇóÓëlibsvm¹¤¾ßÏäÖĞÒªÇóÒ»ÖÂ.
-% train:ÑµÁ·¼¯.ÒªÇóÓëlibsvm¹¤¾ßÏäÖĞÒªÇóÒ»ÖÂ.
-% cmin:³Í·£²ÎÊıcµÄ±ä»¯·¶Î§µÄ×îĞ¡Öµ(È¡ÒÔ2Îªµ×µÄ¶ÔÊıºó),¼´ c_min = 2^(cmin).Ä¬ÈÏÎª -5
-% cmax:³Í·£²ÎÊıcµÄ±ä»¯·¶Î§µÄ×î´óÖµ(È¡ÒÔ2Îªµ×µÄ¶ÔÊıºó),¼´ c_max = 2^(cmax).Ä¬ÈÏÎª 5
-% gmin:²ÎÊıgµÄ±ä»¯·¶Î§µÄ×îĞ¡Öµ(È¡ÒÔ2Îªµ×µÄ¶ÔÊıºó),¼´ g_min = 2^(gmin).Ä¬ÈÏÎª -5
-% gmax:²ÎÊıgµÄ±ä»¯·¶Î§µÄ×îĞ¡Öµ(È¡ÒÔ2Îªµ×µÄ¶ÔÊıºó),¼´ g_min = 2^(gmax).Ä¬ÈÏÎª 5
-% v:cross validationµÄ²ÎÊı,¼´¸ø²âÊÔ¼¯·ÖÎª¼¸²¿·Ö½øĞĞcross validation.Ä¬ÈÏÎª 3
-% cstep:²ÎÊıc²½½øµÄ´óĞ¡.Ä¬ÈÏÎª 1
-% gstep:²ÎÊıg²½½øµÄ´óĞ¡.Ä¬ÈÏÎª 1
-% msestep:×îºóÏÔÊ¾MSEÍ¼Ê±µÄ²½½ø´óĞ¡.Ä¬ÈÏÎª 20
-% Êä³ö:
-% bestacc:Cross Validation ¹ı³ÌÖĞµÄ×î¸ß·ÖÀà×¼È·ÂÊ
-% bestc:×î¼ÑµÄ²ÎÊıc
-% bestg:×î¼ÑµÄ²ÎÊıg
+% è¾“å…¥:
+% train_label:è®­ç»ƒé›†æ ‡ç­¾.è¦æ±‚ä¸libsvmå·¥å…·ç®±ä¸­è¦æ±‚ä¸€è‡´.
+% train:è®­ç»ƒé›†.è¦æ±‚ä¸libsvmå·¥å…·ç®±ä¸­è¦æ±‚ä¸€è‡´.
+% cmin:æƒ©ç½šå‚æ•°cçš„å˜åŒ–èŒƒå›´çš„æœ€å°å€¼(å–ä»¥2ä¸ºåº•çš„å¯¹æ•°å),å³ c_min = 2^(cmin).é»˜è®¤ä¸º -5
+% cmax:æƒ©ç½šå‚æ•°cçš„å˜åŒ–èŒƒå›´çš„æœ€å¤§å€¼(å–ä»¥2ä¸ºåº•çš„å¯¹æ•°å),å³ c_max = 2^(cmax).é»˜è®¤ä¸º 5
+% gmin:å‚æ•°gçš„å˜åŒ–èŒƒå›´çš„æœ€å°å€¼(å–ä»¥2ä¸ºåº•çš„å¯¹æ•°å),å³ g_min = 2^(gmin).é»˜è®¤ä¸º -5
+% gmax:å‚æ•°gçš„å˜åŒ–èŒƒå›´çš„æœ€å°å€¼(å–ä»¥2ä¸ºåº•çš„å¯¹æ•°å),å³ g_min = 2^(gmax).é»˜è®¤ä¸º 5
+% v:cross validationçš„å‚æ•°,å³ç»™æµ‹è¯•é›†åˆ†ä¸ºå‡ éƒ¨åˆ†è¿›è¡Œcross validation.é»˜è®¤ä¸º 3
+% cstep:å‚æ•°cæ­¥è¿›çš„å¤§å°.é»˜è®¤ä¸º 1
+% gstep:å‚æ•°gæ­¥è¿›çš„å¤§å°.é»˜è®¤ä¸º 1
+% msestep:æœ€åæ˜¾ç¤ºMSEå›¾æ—¶çš„æ­¥è¿›å¤§å°.é»˜è®¤ä¸º 20
+% è¾“å‡º:
+% bestacc:Cross Validation è¿‡ç¨‹ä¸­çš„æœ€é«˜åˆ†ç±»å‡†ç¡®ç‡
+% bestc:æœ€ä½³çš„å‚æ•°c
+% bestg:æœ€ä½³çš„å‚æ•°g
 
 % about the parameters of SVMcgForRegress
 if nargin < 11
@@ -354,7 +349,7 @@ subplot(1,2,1);
 clabel(C,h,'FontSize',10,'Color','r');
 xlabel('log2c','FontSize',12);
 ylabel('log2g','FontSize',12);
-title('²ÎÊıÑ¡Ôñ½á¹ûÍ¼(µÈ¸ßÏßÍ¼)','FontSize',12);
+title('å‚æ•°é€‰æ‹©ç»“æœå›¾(ç­‰é«˜çº¿å›¾)','FontSize',12);
 grid on;
 
 subplot(1,2,2);
@@ -365,7 +360,7 @@ axis([cmin,cmax,gmin,gmax,0,1]);
 xlabel('log2c','FontSize',12);
 ylabel('log2g','FontSize',12);
 zlabel('MSE','FontSize',12);
-title('²ÎÊıÑ¡Ôñ½á¹ûÍ¼(3DÊÓÍ¼)','FontSize',12);
+title('å‚æ•°é€‰æ‹©ç»“æœå›¾(3Dè§†å›¾)','FontSize',12);
 
 filename = ['c',num2str(bestc),'g',num2str(bestg),num2str(msestep),'.tif'];
 % if flag == 1;
